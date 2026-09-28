@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-const REQUIRED_ENV = ['DEMO_PASSWORD', 'BASIC_AUTH_USER', 'BASIC_AUTH_PASSWORD', 'SIMPLYBOOST_BOT_ID'];
+const REQUIRED_ENV = ['DEMO_PASSWORD', 'SIMPLYBOOST_BOT_ID'];
 const DEFAULT_WIDGET_URL = 'https://get.simplyboost.io/widget.js';
 
 function env_value(string $name): string
@@ -61,10 +61,11 @@ if ((parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/') === '/healt
     return;
 }
 
-// Gate the whole demo behind HTTP basic auth so it is never publicly browsable.
+// Optional site-wide HTTP basic auth: only enforced when BOTH variables are set.
 $basicUser = $_SERVER['PHP_AUTH_USER'] ?? '';
 $basicPass = $_SERVER['PHP_AUTH_PW'] ?? '';
-if (!hash_equals(env_value('BASIC_AUTH_USER'), $basicUser) || !hash_equals(env_value('BASIC_AUTH_PASSWORD'), $basicPass)) {
+$basicEnabled = env_value('BASIC_AUTH_USER') !== '' && env_value('BASIC_AUTH_PASSWORD') !== '';
+if ($basicEnabled && (!hash_equals(env_value('BASIC_AUTH_USER'), $basicUser) || !hash_equals(env_value('BASIC_AUTH_PASSWORD'), $basicPass))) {
     header('WWW-Authenticate: Basic realm="Dealer Portal demo", charset="UTF-8"');
     fail(401, 'Authentication required.');
     return;
