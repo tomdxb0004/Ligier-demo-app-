@@ -1,0 +1,47 @@
+body { font-family: Nunito, sans-serif; }
+
+.demo-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+            background: #fff3cd; color: #664d03; border-radius: 4px; padding: 2px 6px; }
+.demo-tag-dark { background: rgba(255,255,255,.14); color: #e9edf3; margin-left: 6px; }
+
+.admin { display: flex; min-height: 100vh; background: #212529; }
+
+.sidebar { width: 288px; flex: 0 0 288px; background: #3d4b66; }
+.sidebar .brand { height: 72px; background: #2e3b56; color: #fff; display: flex; align-items: center;
+                  justify-content: center; font-size: 16px; font-weight: 500; }
+.sidebar .item { height: 56px; display: flex; align-items: center; justify-content: space-between;
+                 padding: 0 20px 0 18px; color: #d9dee6; text-decoration: none; font-size: 16px; }
+.sidebar .item:hover, .sidebar .item:focus-visible { background: #46557a; color: #fff; }
+.sidebar .item.plain { padding-left: 17px; height: 47px; }
+
+.content { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.topbar { height: 74px; background: #fff; display: flex; align-items: center; justify-content: flex-end;
+          padding-right: 74px; box-shadow: 0 1px 2px rgba(0,0,0,.08); position: relative; z-index: 1; }
+.topbar .user { color: #444; font-size: 16px; text-decoration: none; }
+
+.main { background: #e9ebee; min-height: 712px; padding: 52px 47px 40px 32px; }
+.main h2 { font-size: 32px; font-weight: 400; color: #2d3748; margin: 0 0 12px; }
+
+.search { display: flex; height: 40px; margin-bottom: 20px; border-radius: 6px; background: #fff;
+          box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+.search input { flex: 1; min-width: 0; border: 0; background: transparent; padding: 0 13px; font-size: 14.5px; color: #333; }
+.search input:focus { outline: 2px solid #3b27db; outline-offset: -2px; border-radius: 6px; }
+.search input::placeholder { color: #6c717a; }
+
+.btn-lt { background: #3b27db; color: #fff; border: 0; border-radius: 6px; font-size: 15.5px; padding: 0 15px;
+          display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.btn-lt:hover { background: #2f1fb3; color: #fff; }
+
+.grid { width: 100%; background: #fff; border-collapse: collapse; margin-top: 16px; font-size: 16px; color: #212529; }
+.grid th { font-weight: 500; height: 44px; padding: 0 9px; border-bottom: 1px solid #e3e5e8; }
+.grid td { height: 60px; padding: 0 9px; }
+
+.badge-new { background: #fbc12e; color: #3d3d3d; font-size: 13.5px; padding: 5px 12px; border-radius: 5px; display: inline-block; }
+.btn-view { height: 41px; }
+
+@media (max-width: 991px) {
+  .admin { flex-direction: column; }
+  .sidebar { width: 100%; flex-basis: auto; }
+  .main { padding: 24px 16px; overflow-x: auto; }
+  .topbar { padding-right: 16px; }
+}
